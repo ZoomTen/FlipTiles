@@ -54,7 +54,7 @@ void ReversiTile::mousePressEvent(QMouseEvent *event){
 void ReversiTile::enterEvent(QEvent *e)
 {
     if(d->legal){
-        this->setStyleSheet("background-color:rgba(255,255,255,.7);");
+        this->setStyleSheet("background-color:rgba(128,128,255,.55);");
     }
 }
 
