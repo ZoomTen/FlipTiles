@@ -1,7 +1,7 @@
 #### Project Metadata ####
 
 # app name and version
-APP_NAME    = theReversi
+APP_NAME    = FlipTiles
 APP_VERSION = 1.0
 
 # for author data and such, see main.cpp...
@@ -41,19 +41,19 @@ unix {
     target.path = /usr/bin/
 
     defaults.files = defaults.conf
-    defaults.path = /etc/theReversi/
+    defaults.path = /etc/FlipTiles/
 
     desktop.path = /usr/share/applications
-    desktop.files = com.zumid.theReversi.desktop
+    desktop.files = com.zumid.FlipTiles.desktop
 
     icon.path = /usr/share/icons/hicolor/scalable/apps/
-    icon.files = icons/thereversi.svg
+    icon.files = icons/fliptiles.svg
 
     INSTALLS += target desktop icon defaults
 }
 
 DISTFILES += \
-    com.zumid.theReversi.desktop \
+    com.zumid.FlipTiles.desktop \
     defaults.conf
 
 RESOURCES += \

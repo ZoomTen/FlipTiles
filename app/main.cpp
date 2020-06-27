@@ -46,11 +46,11 @@ int main(int argc, char* argv[]) {
 
     // application name
     #ifdef T_BLUEPRINT_BUILD
-        a.setApplicationName("theReversi-Blueprint");
-        a.setDesktopFileName("com.zumid.theReversi");
+        a.setApplicationName("FlipTiles-Blueprint");
+        a.setDesktopFileName("com.zumid.FlipTiles");
     #else
-        a.setApplicationName("theReversi");
-        a.setDesktopFileName("com.zumid.theReversi");
+        a.setApplicationName("FlipTiles");
+        a.setDesktopFileName("com.zumid.FlipTiles");
     #endif
 
     // version
@@ -58,8 +58,8 @@ int main(int argc, char* argv[]) {
 
     // app icons
     a.setApplicationIcon(
-                QIcon::fromTheme("thereversi",
-                                 QIcon(":/icons/thereversi.svg")
+                QIcon::fromTheme("fliptiles",
+                                 QIcon(":/icons/fliptiles.svg")
                                  ));
 
     // splash screen graphic
@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
                     ":/icons/aboutsplash.svg"));
 
     // theApp is a "... application" (generic name)
-    a.setGenericName(QApplication::tr("Can you believe it?"));
+    a.setGenericName(QApplication::tr("Reversi/Othello Game"));
 
     // license
     a.setApplicationLicense(tApplication::Gpl3OrLater);
@@ -89,8 +89,8 @@ int main(int argc, char* argv[]) {
 
     // set share path, this will be important for translations and such
     QString userSharePath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    QString localSharePath = QDir::cleanPath(QApplication::applicationDirPath() + "/../share/theReversi/");
-    QString systemSharePath = "/usr/share/theReversi"; // use global system dir (LINUX)
+    QString localSharePath = QDir::cleanPath(QApplication::applicationDirPath() + "/../share/FlipTiles/");
+    QString systemSharePath = "/usr/share/FlipTiles"; // use global system dir (LINUX)
 
     if (QDir(userSharePath).exists()) {
         // if user share path exists, use that
@@ -110,7 +110,7 @@ int main(int argc, char* argv[]) {
                 QStandardPaths::AppDataLocation);
     defaultsPath += "/defaults.conf";
     tSettings::registerDefaults(defaultsPath);   // use local config dir
-    tSettings::registerDefaults("/etc/theReversi/defaults.conf"); // use global config dir (LINUX)
+    tSettings::registerDefaults("/etc/FlipTiles/defaults.conf"); // use global config dir (LINUX)
 
     // setup i18n (it reads the translation files from <sharedir>/translations
     a.installTranslators();

@@ -115,12 +115,12 @@ void MainWindow::on_actionExit_triggered() {
 // help actions
 void MainWindow::on_actionSources_triggered() {
     // open source code page
-    QDesktopServices::openUrl(QUrl("http://github.com/ZoomTen/theReversi"));
+    QDesktopServices::openUrl(QUrl("http://github.com/ZoomTen/theDesk-FlipTiles"));
 }
 
 void MainWindow::on_actionFileBug_triggered() {
     // open issue tracker
-    QDesktopServices::openUrl(QUrl("http://github.com/ZoomTen/theReversi/issues"));
+    QDesktopServices::openUrl(QUrl("http://github.com/ZoomTen/theDesk-FlipTiles/issues"));
 }
 
 void MainWindow::on_actionAbout_triggered() {

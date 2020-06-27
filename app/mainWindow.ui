@@ -11,11 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>theReversi</string>
+   <string>FlipTiles</string>
   </property>
   <property name="windowIcon">
    <iconset theme="thereversi" resource="resources.qrc">
-    <normaloff>:/icons/thereversi.svg</normaloff>:/icons/thereversi.svg</iconset>
+    <normaloff>:/icons/fliptiles.svg</normaloff>:/icons/fliptiles.svg</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>
@@ -78,8 +78,8 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset theme="thereversi" resource="resources.qrc">
-             <normaloff>:/icons/thereversi.svg</normaloff>:/icons/thereversi.svg</iconset>
+            <iconset resource="resources.qrc">
+             <normaloff>:/icons/fliptiles.svg</normaloff>:/icons/fliptiles.svg</iconset>
            </property>
            <property name="popupMode">
             <enum>QToolButton::InstantPopup</enum>
@@ -104,7 +104,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>theReversi</string>
+          <string>Flip Tiles</string>
          </property>
         </widget>
        </item>
