@@ -174,9 +174,9 @@ void Game::updateStatus(){
 
 void Game::processID(int id)
 {
-    qDebug() << "Pressed tile" << id;
+//    qDebug() << "Pressed tile" << id;
     if (d->legalMoves[id]){
-        qDebug() << "Legal move";
+//        qDebug() << "Legal move";
 
         // place tile
         d->reversiGrid[id]->setType(d->currentPlayer);
@@ -196,7 +196,7 @@ void Game::processID(int id)
         d->legalMoves = legalMoves(d->currentPlayer);
         updateStatus();
     } else {
-        qDebug() << "Illegal move";
+//        qDebug() << "Illegal move";
     }
 }
 
@@ -291,7 +291,7 @@ QList<bool> Game::legalMoves(int type)
             }
         }
     }
-    qDebug() << d->currentPlayer << "Legal moves:" << validList;
+//    qDebug() << d->currentPlayer << "Legal moves:" << validList;
     return validList;
 }
 
@@ -364,7 +364,7 @@ void Game::flipTiles(int from, int who){
     tryFlip(who,  1,  1, curRow, curCol); // southeast
     tryFlip(who,  0, -1, curRow, curCol); // west
     tryFlip(who,  0,  1, curRow, curCol); // east
-    qDebug() << d->flipList;
+//    qDebug() << d->flipList;
 
     // do flip tiles
     ReversiTile* curTile;
