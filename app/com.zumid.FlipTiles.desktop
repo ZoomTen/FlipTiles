@@ -2,8 +2,8 @@
 [Desktop Entry]
 Type=Application
 Version=1.0
-Name=theApp
-GenericName=Generic application
-Exec=theApp
-Icon=theApp
-Categories=Utility;
+Name=Flip Tiles
+GenericName=Reversi/othello game
+Exec=fliptiles
+Icon=fliptiles
+Categories=Games;
