@@ -18,14 +18,22 @@ GIT_VERSION = $$system(git rev-parse --short=8 HEAD)
 #### Source file list ####
 
 SOURCES += \
+    game/game.cpp \
+    game/reversitile.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    over/gameoverscreen.cpp
 
 HEADERS += \
-    mainwindow.h
+    game/game.h \
+    game/reversitile.h \
+    mainwindow.h \
+    over/gameoverscreen.h
 
 FORMS += \
-    mainWindow.ui
+    game/game.ui \
+    mainWindow.ui \
+    over/gameoverscreen.ui
 
 # distribution files
 
