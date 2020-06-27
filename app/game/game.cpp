@@ -163,6 +163,8 @@ void Game::updateStatus(){
         QTimer::singleShot(3000, this, [=]{
             if (darkCount < lightCount){
                 emit gameOver(ReversiTile::Light, lightCount, statusTimer);
+            } else if (darkCount == lightCount) {
+                emit gameOver(ReversiTile::Empty, 0, statusTimer);
             } else {
                 emit gameOver(ReversiTile::Dark, darkCount, statusTimer);
             }
@@ -172,6 +174,40 @@ void Game::updateStatus(){
     }
 }
 
+void Game::declareGameOver(){
+    int darkCount = 0;
+    int lightCount = 0;
+
+    int curTileType;
+    for(int i = 0; i < 64; ++i){
+        curTileType = d->reversiGrid[i]->getType();
+        switch(curTileType){
+        case ReversiTile::Dark:
+            darkCount++;
+            break;
+        case ReversiTile::Light:
+            lightCount++;
+            break;
+        default:
+            break;
+        }
+    }
+    ui->darkCount->setText(tr("Dark: %1").arg(darkCount));
+    ui->lightCount->setText(tr("Light: %1").arg(lightCount));
+
+    // wait a while, then declare game over
+    disconnect(d->timerUpdater, &QTimer::timeout,
+               this,            &Game::updateStatusTimer);
+    QString statusTimer = QTime::fromMSecsSinceStartOfDay(d->gameTime.elapsed()).toString("mm:ss");
+    d->gameTime.invalidate();
+    if (darkCount < lightCount){
+        emit gameOver(ReversiTile::Light, lightCount, statusTimer);
+    } else if (darkCount == lightCount) {
+        emit gameOver(ReversiTile::Empty, 0, statusTimer);
+    } else {
+        emit gameOver(ReversiTile::Dark, darkCount, statusTimer);
+    }
+}
 void Game::processID(int id)
 {
 //    qDebug() << "Pressed tile" << id;

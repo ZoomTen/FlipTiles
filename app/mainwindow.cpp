@@ -76,6 +76,12 @@ MainWindow::MainWindow(QWidget* parent):
     QMenu* menu = new QMenu(this);
 
     // create Help submenu
+    QMenu* gameMenu = new QMenu(this);
+    gameMenu->setTitle(tr("Game"));
+    gameMenu->addAction(ui->actionNew); // File a bug
+    gameMenu->addAction(ui->actionGive_Up); // Source code link
+    menu->addMenu(gameMenu);                // add Help submenu
+
     QMenu* helpMenu = new QMenu(this);
     helpMenu->setTitle(tr("Help"));
     helpMenu->addAction(ui->actionFileBug); // File a bug
@@ -95,6 +101,9 @@ MainWindow::MainWindow(QWidget* parent):
 
     connect(ui->game, &Game::gameOver,
             this,     &MainWindow::switchToGameOver);
+
+    connect(ui->over, &GameOverScreen::newGameTrigger,
+            this,     &MainWindow::startNewGame);
 
     ui->stackedWidget->setCurrentAnimation(tStackedWidget::SlideHorizontal);
 }
@@ -131,16 +140,26 @@ void MainWindow::on_actionAbout_triggered() {
 
 /***** events *****/
 void MainWindow::switchToGameOver(int winningplayer, int winningcount, QString timeString){
-    ui->over->setWinLabel(tr("And the winner is %1, with a total of %2 tiles!").arg(d->playerNamesList[winningplayer]).arg(winningcount));
+    if (winningplayer != ReversiTile::Empty){
+        ui->over->setWinLabel(tr("And the winner is %1, with a total of %2 tiles!").arg(d->playerNamesList[winningplayer]).arg(winningcount));
+    } else {
+        ui->over->setWinLabel(tr("It's a tie!"));
+    }
     ui->over->setTimeLabel(tr("Game Time: %1").arg(timeString));
     ui->stackedWidget->setCurrentIndex(1);
-    connect(ui->over, &GameOverScreen::newGameTrigger,
-            this,     &MainWindow::startNewGame);
 }
 
 void MainWindow::startNewGame(){
-    disconnect(ui->over, &GameOverScreen::newGameTrigger,
-            this,     &MainWindow::startNewGame);
     ui->game->reset();
     ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_actionNew_triggered()
+{
+    startNewGame();
+}
+
+void MainWindow::on_actionGive_Up_triggered()
+{
+    ui->game->declareGameOver();
 }

@@ -17,6 +17,7 @@ public:
     explicit Game(QWidget *parent = nullptr);
     ~Game();
     void reset();
+    void declareGameOver();
 
 signals:
     void gameOver(int winningplayer, int winningcount, QString timeString);

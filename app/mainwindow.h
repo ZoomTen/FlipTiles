@@ -49,7 +49,11 @@ class MainWindow : public QMainWindow {
         void switchToGameOver(int winningplayer, int winningcount, QString timestring);
         void startNewGame();
 
-    private:
+        void on_actionNew_triggered();
+
+        void on_actionGive_Up_triggered();
+
+private:
         Ui::MainWindow* ui;
         MainWindowPrivate* d;
 };
