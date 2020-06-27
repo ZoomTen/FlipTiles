@@ -40,6 +40,9 @@
      <property name="text">
       <string>New Game</string>
      </property>
+     <property name="icon">
+      <iconset theme="go-next"/>
+     </property>
     </widget>
    </item>
    <item row="3" column="1">
