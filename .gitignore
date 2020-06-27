@@ -1,0 +1,11 @@
+# shadow build
+build/
+
+# qt translation file
+*.qm
+
+# qt creator file
+*.pro.user
+
+# autosave files
+*.autosave

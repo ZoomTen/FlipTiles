@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=theApp
+GenericName=Generic application
+Exec=theApp
+Icon=theApp
+Categories=Utility;
