@@ -12,3 +12,18 @@ GameOverScreen::~GameOverScreen()
 {
     delete ui;
 }
+
+void GameOverScreen::setWinLabel(QString label)
+{
+    ui->winningLabel->setText(label);
+}
+
+void GameOverScreen::setTimeLabel(QString label)
+{
+    ui->gameTimeLabel->setText(label);
+}
+
+void GameOverScreen::on_pushButton_clicked()
+{
+    emit newGameTrigger();
+}

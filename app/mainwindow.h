@@ -46,6 +46,9 @@ class MainWindow : public QMainWindow {
         void on_actionSources_triggered();
         void on_actionFileBug_triggered();
 
+        void switchToGameOver(int winningplayer, int winningcount, QString timestring);
+        void startNewGame();
+
     private:
         Ui::MainWindow* ui;
         MainWindowPrivate* d;

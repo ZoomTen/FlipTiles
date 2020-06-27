@@ -37,8 +37,15 @@
 // the-libs CSD
 #include <tcsdtools.h>
 
+// stacked widget transition
+#include <tstackedwidget.h>
+
+// game funcs
+#include "game/game.h"
+
 struct MainWindowPrivate {
     tCsdTools csd;
+    QList<QString> playerNamesList;
 };
 
 MainWindow::MainWindow(QWidget* parent):
@@ -51,6 +58,8 @@ MainWindow::MainWindow(QWidget* parent):
     // register CSD actions
     d->csd.installMoveAction(ui->topWidget);
     d->csd.installResizeAction(this);
+
+    d->playerNamesList = {tr("Empty"), tr("Dark"), tr("Light")};
     
     // CSD layout
     QWidget* csd_widget = d->csd.csdBoxForWidget(this);
@@ -83,6 +92,11 @@ MainWindow::MainWindow(QWidget* parent):
 
     // attach menu to icon button
     ui->menuButton->setMenu(menu);
+
+    connect(ui->game, &Game::gameOver,
+            this,     &MainWindow::switchToGameOver);
+
+    ui->stackedWidget->setCurrentAnimation(tStackedWidget::SlideHorizontal);
 }
 
 MainWindow::~MainWindow() {
@@ -113,4 +127,20 @@ void MainWindow::on_actionAbout_triggered() {
     // open the library-provided about dialog
     tAboutDialog d;
     d.exec();
+}
+
+/***** events *****/
+void MainWindow::switchToGameOver(int winningplayer, int winningcount, QString timeString){
+    ui->over->setWinLabel(tr("And the winner is %1, with a total of %2 tiles!").arg(d->playerNamesList[winningplayer]).arg(winningcount));
+    ui->over->setTimeLabel(tr("Game Time: %1").arg(timeString));
+    ui->stackedWidget->setCurrentIndex(1);
+    connect(ui->over, &GameOverScreen::newGameTrigger,
+            this,     &MainWindow::startNewGame);
+}
+
+void MainWindow::startNewGame(){
+    disconnect(ui->over, &GameOverScreen::newGameTrigger,
+            this,     &MainWindow::startNewGame);
+    ui->game->reset();
+    ui->stackedWidget->setCurrentIndex(0);
 }

@@ -15,6 +15,15 @@ public:
     explicit GameOverScreen(QWidget *parent = nullptr);
     ~GameOverScreen();
 
+    void setWinLabel(QString label);
+    void setTimeLabel(QString label);
+
+signals:
+    void newGameTrigger();
+
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::GameOverScreen *ui;
 };
